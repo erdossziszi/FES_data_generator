@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FES_data_generator
-build_property.ProjectDir = E:\ASAP PhD Project\FES_benchmark\FES_data_generator\
+build_property.ProjectDir = E:\ASAP PhD Project\FES_benchmark\FES_data_generator\FES_data_generator\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
