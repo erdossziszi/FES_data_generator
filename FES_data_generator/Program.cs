@@ -10,17 +10,29 @@ namespace FES_data_generator
             Random r = new Random();
             Exam testExam = new Exam()
             {
-                 StudentsNr = 12,
-                 InstructorsNr = 5,
-                 DaysNr = 1,
-                 SlotsPerDay = 60,
-                 RoomNr = 1,
-                 ProgrammNr = 2,
-                 DegreeNr = 2,
-                 RolesNr = 2,  //nullable
-                 CoursesNr = 5 //nullable
+                StudentsNr = 12,
+                InstructorsNr = 5,
+                DaysNr = 1,
+                SlotsPerDay = 60,
+                RoomNr = 1,
+                ProgrammNr = 2,
+                DegreeNr = 2,
+                RolesNr = 2,  //nullable
+                CoursesNr = 5 //nullable
             };
 
+            GenerateInstructors(r, testExam);
+            GenerateStudents(r, testExam);
+            GenerateCourses(r, testExam);
+
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(testExam, options);
+            Console.WriteLine(json);
+            File.WriteAllText(@"..\..\..\JSON files\test.json", json);
+        }
+
+        private static void GenerateInstructors(Random r, Exam testExam)
+        {
             testExam.Instructors = new Instructor[testExam.InstructorsNr];
             for (int i = 0; i < testExam.InstructorsNr; i++)
             {
@@ -33,9 +45,12 @@ namespace FES_data_generator
                 };
                 testExam.Instructors[i] = newInstructor;
             }
+        }
 
+        private static void GenerateStudents(Random r, Exam testExam)
+        {
             int[] coursesPerDegree = Enumerable.Range(0, testExam.DegreeNr).Select(_ => r.Next(testExam.CoursesNr + 1)).ToArray();
-            Console.WriteLine(String.Join(", ", coursesPerDegree));
+            //Console.WriteLine(String.Join(", ", coursesPerDegree));
             testExam.Students = new Student[testExam.StudentsNr];
             for (int i = 0; i < testExam.StudentsNr; i++)
             {
@@ -51,7 +66,10 @@ namespace FES_data_generator
                 newStudent.CourseIds = Enumerable.Range(0, testExam.CoursesNr).OrderBy(_ => Guid.NewGuid()).Take(coursesPerDegree[newStudent.Degree]).Order().ToArray();
                 testExam.Students[i] = newStudent;
             }
+        }
 
+        private static void GenerateCourses(Random r, Exam testExam)
+        {
             testExam.Courses = new Course[testExam.CoursesNr];
             for (int i = 0; i < testExam.CoursesNr; i++)
             {
@@ -62,11 +80,6 @@ namespace FES_data_generator
                 };
                 testExam.Courses[i] = newCourse;
             }
-
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(testExam, options);
-            Console.WriteLine(json);
-            File.WriteAllText(@"..\..\..\JSON files\test.json",json);
         }
     }
 }
