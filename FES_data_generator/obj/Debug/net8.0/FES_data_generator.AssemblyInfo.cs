@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FES_data_generator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08335e2ea40bb51cbcd6cb7222f8379e135c9f72")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a79dfc8a39306f7c285af3416d1a9a1c296d9d22")]
 [assembly: System.Reflection.AssemblyProductAttribute("FES_data_generator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FES_data_generator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
