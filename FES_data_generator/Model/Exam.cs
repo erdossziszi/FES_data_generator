@@ -15,6 +15,8 @@ namespace FES_data_generator.Model
         public int RoomNr { get; set; }
         public int ProgrammNr { get; set; }
         public int DegreeNr { get; set; }
+        public int RolesNr { get; set; }
+        public int CoursesNr { get; set; }
         public Instructor[]? Instructors { get; set; }
         public Student[]? Students { get; set; }
         public Course[]? Courses { get; set; }

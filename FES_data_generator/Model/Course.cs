@@ -9,6 +9,6 @@ namespace FES_data_generator.Model
     internal class Course
     {
         public int Id { get; set; }
-        public Instructor[]? Instructors { get; set; }
+        public int[]? InstructorIds { get; set; }
     }
 }

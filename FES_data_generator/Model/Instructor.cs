@@ -10,7 +10,7 @@ namespace FES_data_generator.Model
     {
         public int Id { get; set; }
         public int[]? Programm { get; set; }
-        public Roles[]? Roles { get; set; }
+        public int[]? Roles { get; set; }
         public bool[]? Availability { get; set; }
 
 

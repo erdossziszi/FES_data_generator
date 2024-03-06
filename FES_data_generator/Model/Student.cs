@@ -11,8 +11,8 @@ namespace FES_data_generator.Model
         public int Id { get; set; }
         public int Programm { get; set; }
         public int Degree { get; set; }
-        public Instructor? Supervisor { get; set; }
-        public Course[]? Courses { get; set; }
+        public int SupervisorId { get; set; }
+        public int[]? CourseIds { get; set; }
         public bool[]? Availability { get; set; }
     }
 }
