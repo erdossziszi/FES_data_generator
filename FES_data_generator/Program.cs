@@ -1,6 +1,4 @@
 ﻿using FES_data_generator.Model;
-using System.Diagnostics.Metrics;
-using System;
 using System.Text.Json;
 
 namespace FES_data_generator
@@ -21,7 +19,6 @@ namespace FES_data_generator
                  DegreeNr = 2,
                  RolesNr = 2,  //nullable
                  CoursesNr = 5 //nullable
-
             };
 
             testExam.Instructors = new Instructor[testExam.InstructorsNr];
@@ -66,8 +63,10 @@ namespace FES_data_generator
                 testExam.Courses[i] = newCourse;
             }
 
-            string json = JsonSerializer.Serialize(testExam);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(testExam, options);
             Console.WriteLine(json);
+            File.WriteAllText(@"..\..\..\JSON files\test.json",json);
         }
     }
 }
