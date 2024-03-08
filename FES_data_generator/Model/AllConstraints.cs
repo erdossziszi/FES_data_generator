@@ -31,5 +31,6 @@ namespace FES_data_generator.Model
         public ConstraintWithParameter? OptimalLunchFinish { get; set; }
         public ConstraintWithParameter? OptimalLunchLenght { get; set; }
         public Constraint[]? SimilarWorkloadsInRoles { get; set; }
+        public ConstraintWithParameter[]? ExamLenghtPerDegree { get; set; }
     }
 }

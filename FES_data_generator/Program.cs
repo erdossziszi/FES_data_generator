@@ -9,19 +9,20 @@ namespace FES_data_generator
     {
         static void Main(string[] args)
         {
-            Random r = new Random();
 
+            Random r = new Random();
+            
             Exam testExam = new Exam()
             {
-                StudentsNr = 12,
-                InstructorsNr = 5,
-                DaysNr = 1,
-                SlotsPerDay = 60,
-                RoomNr = 1,
-                ProgrammNr = 2,
-                DegreeNr = 2,
-                RolesNr = 2,  //nullable
-                CoursesNr = 5 //nullable
+                StudentsNr = r.Next(5,301),
+                InstructorsNr = r.Next(5,101),
+                DaysNr = r.Next(1,16), //TODO: Feasibility check
+                SlotsPerDay = r.Next(10,145),
+                RoomNr = r.Next(1,6),
+                ProgrammNr = r.Next(1,5),
+                DegreeNr = r.Next(1,4),
+                RolesNr = r.Next(5),  //nullable
+                CoursesNr = r.Next(30) //nullable
             };
 
             GenerateInstructors(r, testExam);
@@ -50,12 +51,11 @@ namespace FES_data_generator
             string json = JsonSerializer.Serialize(testExamAllData, options);
             Console.WriteLine(json);
             File.WriteAllText(@"..\..\..\JSON files\test.json", json);
-            
+
         }
 
         private static void GenerateInstructors(Random r, Exam testExam)
         {
-            //var chain = new MarkovChain(0.7, 0.4);
             testExam.Instructors = new Instructor[testExam.InstructorsNr];
             for (int i = 0; i < testExam.InstructorsNr; i++)
             {
@@ -64,7 +64,7 @@ namespace FES_data_generator
                     Id = i,
                     Programm = Enumerable.Range(0, r.Next(1, testExam.ProgrammNr + 1)).Select(_ => r.Next(testExam.ProgrammNr)).Distinct().Order().ToArray(),
                     Roles = Enumerable.Range(0, r.Next(testExam.RolesNr + 1)).Select(_ => r.Next(testExam.RolesNr)).Distinct().Order().ToArray(),
-                    Availability = GenerateSmartAvailability(r, testExam)
+                    Availability = GenerateSmartAvailability(r, testExam, 0.8, 0.1, 0.3, 0.1)
                 };
                 testExam.Instructors[i] = newInstructor;
             }
@@ -73,7 +73,6 @@ namespace FES_data_generator
         private static void GenerateStudents(Random r, Exam testExam)
         {
             int[] coursesPerDegree = Enumerable.Range(0, testExam.DegreeNr).Select(_ => r.Next(testExam.CoursesNr + 1)).ToArray();
-            //Console.WriteLine(String.Join(", ", coursesPerDegree));
             testExam.Students = new Student[testExam.StudentsNr];
             for (int i = 0; i < testExam.StudentsNr; i++)
             {
@@ -83,7 +82,7 @@ namespace FES_data_generator
                     Programm = r.Next(testExam.ProgrammNr),
                     Degree = r.Next(testExam.DegreeNr),
                     SupervisorId = r.Next(testExam.InstructorsNr),
-                    Availability = GenerateSmartAvailability(r,testExam)
+                    Availability = GenerateSmartAvailability(r,testExam, 0.9, 0.1, 0.4, 0.1)
                 };
                 newStudent.CourseIds = Enumerable.Range(0, testExam.CoursesNr).OrderBy(_ => Guid.NewGuid()).Take(coursesPerDegree[newStudent.Degree]).Order().ToArray();
                 testExam.Students[i] = newStudent;
@@ -98,16 +97,25 @@ namespace FES_data_generator
                 var newCourse = new Course()
                 {
                     Id = i,
+                    // TODO: more realistic headcount (less instructors)
                     InstructorIds = Enumerable.Range(0, r.Next(1, testExam.InstructorsNr + 1)).Select(_ => r.Next(testExam.InstructorsNr)).Distinct().Order().ToArray(),
                 };
                 testExam.Courses[i] = newCourse;
             }
         }
 
-        private static bool[] GenerateSmartAvailability(Random r, Exam testExam)
+        private static bool[] GenerateSmartAvailability(Random r, Exam testExam, double Tmean, double Tvar, double Fmean, double Fvar)
         {
-            var chain = new MarkovChain(0.8, 0.3);
+            double trueToTrue = GenerateRandomDouble(Tmean - Tvar, Tmean + Tvar);
+            double falseToTrue = GenerateRandomDouble(Fmean - Fvar, Fmean + Fvar);
+            var chain = new MarkovChain(trueToTrue, falseToTrue);
             return chain.GenerateStates(r.Next(2) == 1, testExam.DaysNr * testExam.SlotsPerDay);
+        }
+
+        public static double GenerateRandomDouble(double min, double max)
+        {
+            Random random = new Random();
+            return random.NextDouble() * (max - min) + min;
         }
     }
 }
