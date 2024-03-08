@@ -1,6 +1,7 @@
 ﻿using FES_data_generator.Model;
 using FES_data_generator.Utils;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FES_data_generator
 {
@@ -9,7 +10,6 @@ namespace FES_data_generator
         static void Main(string[] args)
         {
             Random r = new Random();
-            
 
             Exam testExam = new Exam()
             {
@@ -28,8 +28,26 @@ namespace FES_data_generator
             GenerateStudents(r, testExam);
             GenerateCourses(r, testExam);
 
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(testExam, options);
+            AllConstraints testConstraints = new AllConstraints()
+            {
+                OneExamPerRoom = new Constraint(true),
+                SupervisorAvailable = new Constraint(5),
+                OptimalLunchLenght = new ConstraintWithParameter(8, false),
+                MergeableRolesWithExaminer = [new ConstraintWithParameter(0, 2), new ConstraintWithParameter(1, 3)]
+            };
+
+            ExamAllData testExamAllData = new ExamAllData()
+            {
+                Exam = testExam,
+                AllConstraints = testConstraints
+            };
+
+            var options = new JsonSerializerOptions 
+            { 
+                WriteIndented = true, 
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull 
+            };
+            string json = JsonSerializer.Serialize(testExamAllData, options);
             Console.WriteLine(json);
             File.WriteAllText(@"..\..\..\JSON files\test.json", json);
             
