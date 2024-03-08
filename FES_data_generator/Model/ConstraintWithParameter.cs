@@ -8,6 +8,15 @@ namespace FES_data_generator.Model
 {
     internal class ConstraintWithParameter : Constraint
     {
-        public int? Value { get; set; }
+        public ConstraintWithParameter(int value, bool? required, int? penalty = null) : base(required, penalty)
+        {
+            Value = value;
+        }
+        public ConstraintWithParameter(int value, int? penalty) : base(penalty)
+        {
+            Value = value;
+        }
+
+        public int Value { get; set; }
     }
 }
