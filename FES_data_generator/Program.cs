@@ -11,47 +11,50 @@ namespace FES_data_generator
         {
 
             Random r = new Random();
-            
-            Exam testExam = new Exam()
+
+            for (int j = 0; j < 10; j++)
             {
-                StudentsNr = r.Next(5,301),
-                InstructorsNr = r.Next(5,101),
-                DaysNr = r.Next(1,16), //TODO: Feasibility check
-                SlotsPerDay = r.Next(10,145),
-                RoomNr = r.Next(1,6),
-                ProgrammNr = r.Next(1,5),
-                DegreeNr = r.Next(1,4),
-                RolesNr = r.Next(5),  //nullable
-                CoursesNr = r.Next(30) //nullable
-            };
+                Exam testExam = new Exam()
+                {
+                    StudentsNr = r.Next(5, 301),
+                    InstructorsNr = r.Next(5, 101),
+                    DaysNr = r.Next(1, 16), //TODO: Feasibility check
+                    SlotsPerDay = r.Next(10, 145),
+                    RoomNr = r.Next(1, 6),
+                    ProgrammNr = r.Next(1, 5),
+                    DegreeNr = r.Next(1, 4),
+                    RolesNr = r.Next(5),  //nullable
+                    CoursesNr = r.Next(30) //nullable
+                };
 
-            GenerateInstructors(r, testExam);
-            GenerateStudents(r, testExam);
-            GenerateCourses(r, testExam);
+                GenerateInstructors(r, testExam);
+                GenerateStudents(r, testExam);
+                GenerateCourses(r, testExam);
 
-            AllConstraints testConstraints = new AllConstraints()
-            {
-                OneExamPerRoom = new Constraint(true),
-                SupervisorAvailable = new Constraint(5),
-                OptimalLunchLenght = new ConstraintWithParameter(8, false),
-                MergeableRolesWithExaminer = [new ConstraintWithParameter(0, 2), new ConstraintWithParameter(1, 3)]
-            };
+                AllConstraints testConstraints = new AllConstraints()
+                {
+                    OneExamPerRoom = new Constraint(true),
+                    SupervisorAvailable = new Constraint(5),
+                    OptimalLunchLenght = new ConstraintWithParameter(8, false),
+                    MergeableRolesWithExaminer = [new ConstraintWithParameter(0, 2), new ConstraintWithParameter(1, 3)]
+                };
 
-            ExamAllData testExamAllData = new ExamAllData()
-            {
-                Exam = testExam,
-                AllConstraints = testConstraints
-            };
+                ExamAllData testExamAllData = new ExamAllData()
+                {
+                    Exam = testExam,
+                    AllConstraints = testConstraints
+                };
 
-            var options = new JsonSerializerOptions 
-            { 
-                WriteIndented = true, 
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull 
-            };
-            string json = JsonSerializer.Serialize(testExamAllData, options);
-            Console.WriteLine(json);
-            File.WriteAllText(@"..\..\..\JSON files\test.json", json);
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                };
+                string json = JsonSerializer.Serialize(testExamAllData, options);
+                Console.WriteLine(json);
+                File.WriteAllText(@"..\..\..\JSON files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + ".json", json);
 
+            }
         }
 
         private static void GenerateInstructors(Random r, Exam testExam)
