@@ -75,7 +75,7 @@ namespace FES_data_generator
 
         private static void GenerateStudents(Random r, Exam testExam)
         {
-            int[] coursesPerDegree = Enumerable.Range(0, testExam.DegreeNr).Select(_ => r.Next(testExam.CoursesNr + 1)).ToArray();
+            int[] coursesPerDegree = Enumerable.Range(0, testExam.DegreeNr).Select(_ => r.Next(4)).ToArray();
             testExam.Students = new Student[testExam.StudentsNr];
             for (int i = 0; i < testExam.StudentsNr; i++)
             {
