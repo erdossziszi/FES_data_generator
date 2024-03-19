@@ -51,7 +51,7 @@ namespace FES_data_generator
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 };
 
-                string fileName = @"..\..\..\DZN files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + ".dzn";
+                string fileName = @"..\..\..\DZN files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + DateTime.Now.ToString("yyyyMMdd_HHmm") + ".dzn";
                 //string json = JsonSerializer.Serialize(testExamAllData, options);
                 //Console.WriteLine(json);
                 //File.WriteAllText(@"..\..\..\JSON files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + ".json", json);
