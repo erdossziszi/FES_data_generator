@@ -1,0 +1,10 @@
+StudentsNr = 5;
+InstructorsNr = 10;
+DaysNr = 1;
+SlotsPerDay = 10;
+RoomNr = 1;
+ProgrammNr = 2;
+DegreeNr = 1;
+RolesNr = 1;
+CoursesNr = 3;
+InstructorsProgramm = [{0}, {1}, {0, 1}, {1}, {0}, {1}, {0}, {0}, {0, 1}, {0}];

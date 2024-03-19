@@ -16,15 +16,15 @@ namespace FES_data_generator
             {
                 Exam testExam = new Exam()
                 {
-                    StudentsNr = r.Next(5, 301),
-                    InstructorsNr = r.Next(5, 101),
-                    DaysNr = r.Next(1, 16), //TODO: Feasibility check
-                    SlotsPerDay = r.Next(10, 145),
-                    RoomNr = r.Next(1, 6),
-                    ProgrammNr = r.Next(1, 5),
-                    DegreeNr = r.Next(1, 4),
-                    RolesNr = r.Next(5),  //nullable
-                    CoursesNr = r.Next(30) //nullable
+                    StudentsNr = 5,//r.Next(5, 301),
+                    InstructorsNr = 10,//r.Next(5, 101),
+                    DaysNr = 1,//r.Next(1, 16), //TODO: Feasibility check
+                    SlotsPerDay = 10,//r.Next(10, 145),
+                    RoomNr = 1,//r.Next(1, 6),
+                    ProgrammNr = 2,//r.Next(1, 5),
+                    DegreeNr = 1,//r.Next(1, 4),
+                    RolesNr = 1,//r.Next(5),  //nullable
+                    CoursesNr = 3,//r.Next(30) //nullable
                 };
 
                 GenerateInstructors(r, testExam);
@@ -50,9 +50,13 @@ namespace FES_data_generator
                     WriteIndented = true,
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 };
-                string json = JsonSerializer.Serialize(testExamAllData, options);
-                Console.WriteLine(json);
-                File.WriteAllText(@"..\..\..\JSON files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + ".json", json);
+
+                string fileName = @"..\..\..\DZN files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + ".dzn";
+                //string json = JsonSerializer.Serialize(testExamAllData, options);
+                //Console.WriteLine(json);
+                //File.WriteAllText(@"..\..\..\JSON files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + ".json", json);
+                var examToDzn = new ExamToDzn(testExam);
+                examToDzn.SerializeToDzn(fileName);
 
             }
         }
@@ -75,7 +79,7 @@ namespace FES_data_generator
 
         private static void GenerateStudents(Random r, Exam testExam)
         {
-            int[] coursesPerDegree = Enumerable.Range(0, testExam.DegreeNr).Select(_ => r.Next(4)).ToArray();
+            int[] coursesPerDegree = Enumerable.Range(0, testExam.DegreeNr).Select(_ => r.Next(Math.Max(testExam.CoursesNr + 1, 4))).ToArray();
             testExam.Students = new Student[testExam.StudentsNr];
             for (int i = 0; i < testExam.StudentsNr; i++)
             {
