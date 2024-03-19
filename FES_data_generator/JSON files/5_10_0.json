@@ -13,41 +13,44 @@
       {
         "Id": 0,
         "Programm": [
+          0,
           1
         ],
         "Roles": [
           0
         ],
         "Availability": [
-          true,
-          true,
-          true,
-          false,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
         ]
       },
       {
         "Id": 1,
         "Programm": [
-          1
+          0
         ],
-        "Roles": [],
+        "Roles": [
+          0
+        ],
         "Availability": [
-          true,
-          true,
-          true,
-          true,
-          false,
-          false,
-          false,
-          true,
-          false,
-          false
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
         ]
       },
       {
@@ -55,37 +58,42 @@
         "Programm": [
           1
         ],
-        "Roles": [],
+        "Roles": [
+          0
+        ],
         "Availability": [
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false,
-          false,
-          false
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
         ]
       },
       {
         "Id": 3,
         "Programm": [
+          0,
+          1
+        ],
+        "Roles": [
           0
         ],
-        "Roles": [],
         "Availability": [
-          false,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          false,
-          false,
-          true
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
         ]
       },
       {
@@ -97,39 +105,20 @@
           0
         ],
         "Availability": [
-          false,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true,
-          true,
-          false,
-          false
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       },
       {
         "Id": 5,
-        "Programm": [
-          0
-        ],
-        "Roles": [],
-        "Availability": [
-          true,
-          true,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          true
-        ]
-      },
-      {
-        "Id": 6,
         "Programm": [
           0,
           1
@@ -138,16 +127,37 @@
           0
         ],
         "Availability": [
-          true,
-          true,
-          true,
-          true,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 6,
+        "Programm": [
+          1
+        ],
+        "Roles": [
+          0
+        ],
+        "Availability": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
         ]
       },
       {
@@ -155,56 +165,62 @@
         "Programm": [
           0
         ],
-        "Roles": [],
+        "Roles": [
+          0
+        ],
         "Availability": [
-          false,
-          false,
-          false,
-          false,
-          true,
-          true,
-          true,
-          false,
-          false,
-          true
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
         ]
       },
       {
         "Id": 8,
         "Programm": [
+          0,
           1
         ],
-        "Roles": [],
+        "Roles": [
+          0
+        ],
         "Availability": [
-          false,
-          true,
-          true,
-          false,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
         ]
       },
       {
         "Id": 9,
         "Programm": [
+          0,
           1
         ],
         "Roles": [],
         "Availability": [
-          false,
-          false,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1
         ]
       }
     ],
@@ -213,110 +229,105 @@
         "Id": 0,
         "Programm": 0,
         "Degree": 0,
-        "SupervisorId": 1,
+        "SupervisorId": 8,
         "CourseIds": [
-          1,
-          2
+          1
         ],
         "Availability": [
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
         ]
       },
       {
         "Id": 1,
         "Programm": 0,
         "Degree": 0,
-        "SupervisorId": 3,
+        "SupervisorId": 4,
         "CourseIds": [
-          0,
           2
         ],
         "Availability": [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       },
       {
         "Id": 2,
-        "Programm": 1,
+        "Programm": 0,
         "Degree": 0,
-        "SupervisorId": 3,
+        "SupervisorId": 9,
         "CourseIds": [
-          1,
-          2
+          1
         ],
         "Availability": [
-          false,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
         ]
       },
       {
         "Id": 3,
-        "Programm": 0,
+        "Programm": 1,
         "Degree": 0,
-        "SupervisorId": 4,
+        "SupervisorId": 1,
         "CourseIds": [
-          1,
-          2
+          1
         ],
         "Availability": [
-          false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
         ]
       },
       {
         "Id": 4,
-        "Programm": 0,
+        "Programm": 1,
         "Degree": 0,
-        "SupervisorId": 5,
+        "SupervisorId": 6,
         "CourseIds": [
-          1,
-          2
+          1
         ],
         "Availability": [
-          true,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          false,
-          false,
-          false
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
         ]
       }
     ],
@@ -324,34 +335,30 @@
       {
         "Id": 0,
         "InstructorIds": [
-          1,
-          2,
-          3
+          3,
+          4,
+          6,
+          7,
+          8
         ]
       },
       {
         "Id": 1,
         "InstructorIds": [
           0,
-          1,
           2,
-          3,
-          4,
-          8,
+          5,
           9
         ]
       },
       {
         "Id": 2,
         "InstructorIds": [
-          1,
           2,
-          4,
+          3,
           5,
           6,
-          7,
-          8,
-          9
+          7
         ]
       }
     ]

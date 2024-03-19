@@ -13,6 +13,6 @@ namespace FES_data_generator.Model
         public int Degree { get; set; }
         public int SupervisorId { get; set; }
         public int[]? CourseIds { get; set; }
-        public bool[]? Availability { get; set; }
+        public int[]? Availability { get; set; }
     }
 }
