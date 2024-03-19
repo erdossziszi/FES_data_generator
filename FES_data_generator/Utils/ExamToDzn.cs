@@ -10,17 +10,17 @@ namespace FES_data_generator.Utils
     internal class ExamToDzn
     {
         Exam exam;
-        string dzn;
+
         public ExamToDzn(Exam Exam)
         {
             exam = Exam;
         }
 
-        public string SerializeToDzn(string fileName)
+        public void SerializeToDzn(string fileName)
         {
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                // Sablon kitöltése
+
                 sw.WriteLine("StudentsNr = {0};", exam.StudentsNr);
                 sw.WriteLine("InstructorsNr = {0};", exam.InstructorsNr);
                 sw.WriteLine("DaysNr = {0};", exam.DaysNr);
@@ -31,47 +31,45 @@ namespace FES_data_generator.Utils
                 sw.WriteLine("RolesNr = {0};", exam.RolesNr);
                 sw.WriteLine("CoursesNr = {0};", exam.CoursesNr);
 
-                // Tömbök kezelése
-                var InstructorsRoles = "InstructorsRoles = [";
-                var InstructorsAvailability = "InstructorsAvailability = [";
+                string instructorsId = ToEnum(exam.Instructors, "Id");
+                sw.WriteLine("InstructorsId = {0};", instructorsId);
 
                 string instructorsProgramm = ToArrayOfSets(exam.Instructors, "Programm");
                 sw.WriteLine("InstructorsProgramm = {0};", instructorsProgramm);
-                Console.WriteLine(instructorsProgramm);
 
-                /*sw.WriteLine("SimultaneousSessions = [|");
-                for (int i = 0; i < exam.DaysNr; i++)
-                {
-                    for (int j = 0; j < exam.SlotsPerDay; j++)
-                    {
-                        sw.Write("{0}, {1}|", i * exam.SlotsPerDay + j + 1, i * exam.SlotsPerDay + j + 2);
-                    }
-                }
-                sw.WriteLine("]");
+                string instructorsRoles = ToArrayOfSets(exam.Instructors, "Roles");
+                sw.WriteLine("InstructorsRoles = {0};", instructorsRoles);
 
-                sw.WriteLine("AcademicLevel = [");
-                for (int i = 0; i < exam.StudentsNr; i++)
-                {
-                    sw.Write("{0}, ", exam.DegreeNr);
-                }
-                sw.WriteLine("]");*/
+                string instructorsAvailability = To2DArray(exam.Instructors, "Availability");
+                sw.WriteLine("InstructorsAvailability = {0};", instructorsAvailability);
 
                 sw.Close();
             }
-
-
-            return dzn;
         }
 
-        private string ToArrayOfSets()
+
+        private string ToArrayOfSets(IEnumerable<object> group, string listPropertyName)
         {
-            return "[" + string.Join(", ", exam.Instructors.Where(i => i != null).Select(i => $"{{{string.Join(", ", i.Programm)}}}")) + "]";
+            return "[" + string.Join(", ", group.Where(i => i != null)
+                                                .Select(i => $"{{{string.Join(", ", (int[])i.GetType().GetProperty(listPropertyName).GetValue(i))}}}")) + "]";
         }
 
-        private string ToArrayOfSets(IEnumerable<object> instructors, string programPropertyName)
+        private string To2DArray(IEnumerable<object> group, string listPropertyName)
         {
-            return "[" + string.Join(", ", instructors.Where(i => i != null)
-                                                    .Select(i => $"{{{string.Join(", ", (int[])i.GetType().GetProperty(programPropertyName).GetValue(i))}}}")) + "]";
+            return "[" + string.Join(", ", group.Where(i => i != null)
+                                                .Select(i => $"|{string.Join(", ", (int[])i.GetType().GetProperty(listPropertyName).GetValue(i))}")) + "|]";
+        }
+
+        private string ToArray(IEnumerable<object> group, string propertyName)
+        {
+            return "[" + string.Join(", ", group.Where(i => i != null)
+                                                .Select(i => (int)i.GetType().GetProperty(propertyName).GetValue(i))) + "]";
+        }
+
+        private string ToEnum(IEnumerable<object> group, string propertyName)
+        {
+            return "{" + string.Join(", ", group.Where(i => i != null)
+                                                .Select(i => (int)i.GetType().GetProperty(propertyName).GetValue(i))) + "}";
         }
     }
 }
