@@ -111,12 +111,12 @@ namespace FES_data_generator
             }
         }
 
-        private static bool[] GenerateSmartAvailability(Random r, Exam testExam, double Tmean, double Tvar, double Fmean, double Fvar)
+        private static int[] GenerateSmartAvailability(Random r, Exam testExam, double Tmean, double Tvar, double Fmean, double Fvar)
         {
             double trueToTrue = GenerateRandomDouble(Tmean - Tvar, Tmean + Tvar);
             double falseToTrue = GenerateRandomDouble(Fmean - Fvar, Fmean + Fvar);
             var chain = new MarkovChain(trueToTrue, falseToTrue);
-            return chain.GenerateStates(r.Next(2) == 1, testExam.DaysNr * testExam.SlotsPerDay);
+            return chain.GenerateStates(r.Next(2), testExam.DaysNr * testExam.SlotsPerDay);
         }
 
         public static double GenerateRandomDouble(double min, double max)

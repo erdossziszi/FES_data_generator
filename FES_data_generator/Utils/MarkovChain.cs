@@ -21,37 +21,37 @@ namespace FES_data_generator.Utils
             };
         }
 
-        public bool NextState(bool currentState)
+        public int NextState(int currentState)
         {
             double randomNumber = r.NextDouble();
 
-            if (currentState == true)
+            if (currentState == 1)
             {
                 if (randomNumber < _transitionProbabilities[0, 0])
                 {
-                    return true;
+                    return 1;
                 }
                 else
                 {
-                    return false;
+                    return 0;
                 }
             }
             else
             {
                 if (randomNumber < _transitionProbabilities[1, 0])
                 {
-                    return true;
+                    return 1;
                 }
                 else
                 {
-                    return false;
+                    return 0;
                 }
             }
         }
 
-        public bool[] GenerateStates(bool init, int length)
+        public int[] GenerateStates(int init, int length)
         {
-            var states = new bool[length];
+            var states = new int[length];
             states[0] = init;
             for (int i = 1; i < length; i++)
             {
