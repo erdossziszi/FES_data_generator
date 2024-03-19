@@ -62,6 +62,13 @@ namespace FES_data_generator.Utils
                 string studentsAvailability = To2DArray(exam.Students, "Availability");
                 sw.WriteLine("StudentsAvailability = {0};", studentsAvailability);
 
+
+                string coursesId = ToEnum(exam.Courses, "Id");
+                sw.WriteLine("CoursesId = {0};", coursesId);
+
+                string coursesInstructorIds = ToArrayOfSets(exam.Courses, "InstructorIds");
+                sw.WriteLine("CoursesInstructorIds = {0};", coursesInstructorIds);
+
                 sw.Close();
             }
         }
