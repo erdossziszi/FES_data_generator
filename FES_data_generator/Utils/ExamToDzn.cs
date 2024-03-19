@@ -32,31 +32,12 @@ namespace FES_data_generator.Utils
                 sw.WriteLine("CoursesNr = {0};", exam.CoursesNr);
 
                 // Tömbök kezelése
-
-                var InstructorsProgramm = "[";
                 var InstructorsRoles = "InstructorsRoles = [";
                 var InstructorsAvailability = "InstructorsAvailability = [";
 
-                for (int ins = 0; ins < exam.Instructors.Length; ins++)
-                {
-                    Instructor? instructor = exam.Instructors[ins];
-
-                    if (ins > 0) InstructorsProgramm += ", ";
-
-                    InstructorsProgramm += "{";
-
-                    for (int i = 0; i < instructor.Programm.Length; i++)
-                    {
-                        if (i > 0) InstructorsProgramm += ", ";
-                        InstructorsProgramm += instructor.Programm[i];
-                    }
-                    InstructorsProgramm += "}";
-                }
-
-
-                InstructorsProgramm += "]";
-
-                sw.WriteLine("InstructorsProgramm = {0};", InstructorsProgramm);
+                string instructorsProgramm = ToArrayOfSets(exam.Instructors, "Programm");
+                sw.WriteLine("InstructorsProgramm = {0};", instructorsProgramm);
+                Console.WriteLine(instructorsProgramm);
 
                 /*sw.WriteLine("SimultaneousSessions = [|");
                 for (int i = 0; i < exam.DaysNr; i++)
@@ -77,9 +58,20 @@ namespace FES_data_generator.Utils
 
                 sw.Close();
             }
+
+
             return dzn;
         }
 
+        private string ToArrayOfSets()
+        {
+            return "[" + string.Join(", ", exam.Instructors.Where(i => i != null).Select(i => $"{{{string.Join(", ", i.Programm)}}}")) + "]";
+        }
 
+        private string ToArrayOfSets(IEnumerable<object> instructors, string programPropertyName)
+        {
+            return "[" + string.Join(", ", instructors.Where(i => i != null)
+                                                    .Select(i => $"{{{string.Join(", ", (int[])i.GetType().GetProperty(programPropertyName).GetValue(i))}}}")) + "]";
+        }
     }
 }
