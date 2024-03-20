@@ -13,32 +13,32 @@
       {
         "Id": 1,
         "Programm": [
-          2
-        ],
-        "Roles": [
           1
         ],
+        "Roles": [],
         "Availability": [
           0,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "Id": 2,
         "Programm": [
-          2
+          1
         ],
-        "Roles": [],
+        "Roles": [
+          1
+        ],
         "Availability": [
-          0,
+          1,
           1,
           1,
           1,
@@ -53,27 +53,7 @@
       {
         "Id": 3,
         "Programm": [
-          1,
           2
-        ],
-        "Roles": [],
-        "Availability": [
-          0,
-          1,
-          1,
-          0,
-          1,
-          1,
-          0,
-          1,
-          1,
-          1
-        ]
-      },
-      {
-        "Id": 4,
-        "Programm": [
-          1
         ],
         "Roles": [
           1
@@ -82,11 +62,31 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 4,
+        "Programm": [
           1,
-          1,
-          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0,
           1,
           0,
+          1,
+          1,
+          1,
+          1,
           0,
           1
         ]
@@ -94,22 +94,22 @@
       {
         "Id": 5,
         "Programm": [
-          1
+          2
         ],
         "Roles": [
           1
         ],
         "Availability": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           1,
-          1,
-          1
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
@@ -122,12 +122,12 @@
         "Availability": [
           1,
           1,
-          1,
-          1,
-          1,
-          1,
+          0,
           1,
           0,
+          0,
+          1,
+          1,
           1,
           1
         ]
@@ -141,9 +141,9 @@
           1
         ],
         "Availability": [
-          0,
-          0,
-          0,
+          1,
+          1,
+          1,
           1,
           1,
           1,
@@ -158,19 +158,17 @@
         "Programm": [
           1
         ],
-        "Roles": [
-          1
-        ],
+        "Roles": [],
         "Availability": [
-          0,
-          0,
+          1,
           0,
           0,
           0,
           1,
+          1,
+          1,
           0,
-          1,
-          1,
+          0,
           0
         ]
       },
@@ -184,15 +182,15 @@
         ],
         "Availability": [
           0,
-          0,
-          0,
           1,
           1,
           1,
-          0,
-          0,
-          0,
-          0
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       },
       {
@@ -200,20 +198,18 @@
         "Programm": [
           2
         ],
-        "Roles": [
-          1
-        ],
+        "Roles": [],
         "Availability": [
           0,
           0,
+          0,
+          1,
+          0,
           1,
           1,
           1,
           1,
-          1,
-          1,
-          1,
-          1
+          0
         ]
       }
     ],
@@ -222,43 +218,41 @@
         "Id": 1,
         "Programm": 2,
         "Degree": 1,
-        "SupervisorId": 1,
+        "SupervisorId": 6,
         "CourseIds": [
-          1,
-          2
+          3
         ],
         "Availability": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
           0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
           1,
           1
         ]
       },
       {
         "Id": 2,
-        "Programm": 2,
+        "Programm": 1,
         "Degree": 1,
-        "SupervisorId": 2,
+        "SupervisorId": 3,
         "CourseIds": [
-          2,
           3
         ],
         "Availability": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
           0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           1
         ]
       },
@@ -266,13 +260,12 @@
         "Id": 3,
         "Programm": 1,
         "Degree": 1,
-        "SupervisorId": 9,
+        "SupervisorId": 7,
         "CourseIds": [
-          1,
           3
         ],
         "Availability": [
-          0,
+          1,
           1,
           1,
           1,
@@ -286,44 +279,42 @@
       },
       {
         "Id": 4,
-        "Programm": 2,
+        "Programm": 1,
         "Degree": 1,
-        "SupervisorId": 3,
+        "SupervisorId": 2,
         "CourseIds": [
-          2,
-          3
+          2
         ],
         "Availability": [
           0,
           0,
           0,
+          0,
           1,
           1,
           1,
-          0,
-          0,
-          0,
-          0
+          1,
+          1,
+          1
         ]
       },
       {
         "Id": 5,
         "Programm": 1,
         "Degree": 1,
-        "SupervisorId": 5,
+        "SupervisorId": 10,
         "CourseIds": [
-          2,
           3
         ],
         "Availability": [
-          1,
+          0,
+          0,
           1,
           1,
           1,
           1,
           0,
-          1,
-          1,
+          0,
           1,
           1
         ]
@@ -333,35 +324,24 @@
       {
         "Id": 1,
         "InstructorIds": [
-          2,
           3,
-          4,
-          7,
+          9,
           10
         ]
       },
       {
         "Id": 2,
         "InstructorIds": [
-          1,
-          3,
+          2,
           4,
-          6,
-          7,
-          9,
-          10
+          8
         ]
       },
       {
         "Id": 3,
         "InstructorIds": [
-          1,
-          2,
+          3,
           4,
-          5,
-          6,
-          7,
-          8,
           9
         ]
       }

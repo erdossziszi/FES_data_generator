@@ -50,14 +50,16 @@ namespace FES_data_generator
                     WriteIndented = true,
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 };
+                
+                string fileNameJson = @"..\..\..\JSON files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + DateTime.Now.ToString("yyyyMMdd_HHmm") + ".json";
+                string fileNameDzn = @"..\..\..\DZN files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + DateTime.Now.ToString("yyyyMMdd_HHmm") + ".dzn";
 
-                string fileName = @"..\..\..\DZN files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + DateTime.Now.ToString("yyyyMMdd_HHmm") + ".dzn";
-                //string json = JsonSerializer.Serialize(testExamAllData, options);
-                //Console.WriteLine(json);
-                //File.WriteAllText(@"..\..\..\JSON files\" + testExam.StudentsNr + "_" + testExam.InstructorsNr + "_" + j + ".json", json);
+                string json = JsonSerializer.Serialize(testExamAllData, options);
+                Console.WriteLine(json);
+                File.WriteAllText(fileNameJson, json);
+
                 var examToDzn = new ExamToDzn(testExam);
-                examToDzn.SerializeToDzn(fileName);
-
+                examToDzn.SerializeToDzn(fileNameDzn);
             }
         }
 
@@ -68,9 +70,9 @@ namespace FES_data_generator
             {
                 var newInstructor = new Instructor()
                 {
-                    Id = i,
-                    Programm = Enumerable.Range(0, r.Next(1, testExam.ProgrammNr + 1)).Select(_ => r.Next(testExam.ProgrammNr)).Distinct().Order().ToArray(),
-                    Roles = Enumerable.Range(0, r.Next(testExam.RolesNr + 1)).Select(_ => r.Next(testExam.RolesNr)).Distinct().Order().ToArray(),
+                    Id = i + 1,
+                    Programm = Enumerable.Range(0, r.Next(1, testExam.ProgrammNr + 1)).Select(_ => r.Next(1, testExam.ProgrammNr + 1)).Distinct().Order().ToArray(),
+                    Roles = Enumerable.Range(0, r.Next(testExam.RolesNr + 1)).Select(_ => r.Next(1, testExam.RolesNr + 1)).Distinct().Order().ToArray(),
                     Availability = GenerateSmartAvailability(r, testExam, 0.8, 0.1, 0.3, 0.1)
                 };
                 testExam.Instructors[i] = newInstructor;
@@ -85,13 +87,13 @@ namespace FES_data_generator
             {
                 var newStudent = new Student()
                 {
-                    Id = i,
-                    Programm = r.Next(testExam.ProgrammNr),
-                    Degree = r.Next(testExam.DegreeNr),
-                    SupervisorId = r.Next(testExam.InstructorsNr),
+                    Id = i + 1,
+                    Programm = r.Next(1, testExam.ProgrammNr + 1),
+                    Degree = r.Next(1, testExam.DegreeNr + 1),
+                    SupervisorId = r.Next(1, testExam.InstructorsNr + 1),
                     Availability = GenerateSmartAvailability(r,testExam, 0.9, 0.1, 0.4, 0.1)
                 };
-                newStudent.CourseIds = Enumerable.Range(0, testExam.CoursesNr).OrderBy(_ => Guid.NewGuid()).Take(coursesPerDegree[newStudent.Degree]).Order().ToArray();
+                newStudent.CourseIds = Enumerable.Range(1, testExam.CoursesNr).OrderBy(_ => Guid.NewGuid()).Take(coursesPerDegree[newStudent.Degree-1]).Order().ToArray();
                 testExam.Students[i] = newStudent;
             }
         }
@@ -103,9 +105,9 @@ namespace FES_data_generator
             {
                 var newCourse = new Course()
                 {
-                    Id = i,
+                    Id = i + 1,
                     // TODO: more realistic headcount (less instructors)
-                    InstructorIds = Enumerable.Range(0, r.Next(1, testExam.InstructorsNr + 1)).Select(_ => r.Next(testExam.InstructorsNr)).Distinct().Order().ToArray(),
+                    InstructorIds = Enumerable.Range(0, r.Next(1, testExam.InstructorsNr + 1)).Select(_ => r.Next(1, testExam.InstructorsNr + 1)).Distinct().Order().ToArray(),
                 };
                 testExam.Courses[i] = newCourse;
             }
