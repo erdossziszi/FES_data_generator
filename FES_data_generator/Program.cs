@@ -16,19 +16,24 @@ namespace FES_data_generator
             {
                 Exam testExam = new Exam()
                 {
-                    StudentsNr = 5,//r.Next(5, 301),
+                    StudentsNr = 15,//r.Next(5, 301),
                     InstructorsNr = 10,//r.Next(5, 101),
-                    DaysNr = 1,//r.Next(1, 16), //TODO: Feasibility check
+                    DaysNr = 2,//r.Next(1, 16), //TODO: Feasibility check
                     SlotsPerDay = 10,//r.Next(10, 145),
-                    RoomNr = 1,//r.Next(1, 6),
+                    RoomNr = 2,//r.Next(1, 6),
                     ProgrammNr = 2,//r.Next(1, 5),
                     DegreeNr = 1,//r.Next(1, 4),
                     RolesNr = 1,//r.Next(5),  //nullable
                     CoursesNr = 3,//r.Next(30) //nullable
                 };
+                Dictionary<int, HashSet<int>> instructorsOfProgramms = new Dictionary<int, HashSet<int>>();
+                for (int i = 1; i < testExam.ProgrammNr + 1; i++)
+                {
+                    instructorsOfProgramms.Add(i, new HashSet<int>());
+                }
 
-                GenerateInstructors(r, testExam);
-                GenerateStudents(r, testExam);
+                GenerateInstructors(r, testExam, instructorsOfProgramms);
+                GenerateStudents(r, testExam, instructorsOfProgramms);
                 GenerateCourses(r, testExam);
 
                 AllConstraints testConstraints = new AllConstraints()
@@ -63,7 +68,7 @@ namespace FES_data_generator
             }
         }
 
-        private static void GenerateInstructors(Random r, Exam testExam)
+        private static void GenerateInstructors(Random r, Exam testExam, Dictionary<int, HashSet<int>> instructorsOfProgramms)
         {
             testExam.Instructors = new Instructor[testExam.InstructorsNr];
             for (int i = 0; i < testExam.InstructorsNr; i++)
@@ -76,10 +81,14 @@ namespace FES_data_generator
                     Availability = GenerateSmartAvailability(r, testExam, 0.8, 0.1, 0.3, 0.1)
                 };
                 testExam.Instructors[i] = newInstructor;
+                foreach (var p in newInstructor.Programm)
+                {
+                    instructorsOfProgramms[p].Add(newInstructor.Id);
+                }
             }
         }
 
-        private static void GenerateStudents(Random r, Exam testExam)
+        private static void GenerateStudents(Random r, Exam testExam, Dictionary<int, HashSet<int>> instructorsOfProgramms)
         {
             int[] coursesPerDegree = Enumerable.Range(0, testExam.DegreeNr).Select(_ => r.Next(Math.Max(testExam.CoursesNr + 1, 4))).ToArray();
             testExam.Students = new Student[testExam.StudentsNr];
@@ -90,9 +99,11 @@ namespace FES_data_generator
                     Id = i + 1,
                     Programm = r.Next(1, testExam.ProgrammNr + 1),
                     Degree = r.Next(1, testExam.DegreeNr + 1),
-                    SupervisorId = r.Next(1, testExam.InstructorsNr + 1),
+                    //SupervisorId = r.Next(1, testExam.InstructorsNr + 1),
                     Availability = GenerateSmartAvailability(r,testExam, 0.9, 0.1, 0.4, 0.1)
                 };
+                var instructorSet = instructorsOfProgramms[newStudent.Programm];
+                newStudent.SupervisorId = instructorSet.ElementAt(r.Next(instructorSet.Count));
                 newStudent.CourseIds = Enumerable.Range(1, testExam.CoursesNr).OrderBy(_ => Guid.NewGuid()).Take(coursesPerDegree[newStudent.Degree-1]).Order().ToArray();
                 testExam.Students[i] = newStudent;
             }
