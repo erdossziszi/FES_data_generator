@@ -31,8 +31,8 @@ namespace FES_data_generator.Utils
                 sw.WriteLine("RolesNr = {0};", exam.RolesNr);
                 sw.WriteLine("CoursesNr = {0};", exam.CoursesNr);
 
-                string instructorsId = ToEnum(exam.Instructors, "Id");
-                sw.WriteLine("InstructorsId = {0};", instructorsId);
+                //string instructorsId = ToEnum(exam.Instructors, "Id");
+                //sw.WriteLine("InstructorsId = {0};", instructorsId);
 
                 string instructorsProgramm = ToArrayOfSets(exam.Instructors, "Programm");
                 sw.WriteLine("InstructorsProgramm = {0};", instructorsProgramm);
@@ -44,8 +44,8 @@ namespace FES_data_generator.Utils
                 sw.WriteLine("InstructorsAvailability = {0};", instructorsAvailability);
 
 
-                string studentsId = ToEnum(exam.Students, "Id");
-                sw.WriteLine("StudentsId = {0};", studentsId);
+                //string studentsId = ToEnum(exam.Students, "Id");
+                //sw.WriteLine("StudentsId = {0};", studentsId);
 
                 string studentsProgramm = ToArray(exam.Students, "Programm");
                 sw.WriteLine("StudentsProgramm = {0};", studentsProgramm);
@@ -63,8 +63,8 @@ namespace FES_data_generator.Utils
                 sw.WriteLine("StudentsAvailability = {0};", studentsAvailability);
 
 
-                string coursesId = ToEnum(exam.Courses, "Id");
-                sw.WriteLine("CoursesId = {0};", coursesId);
+                //string coursesId = ToEnum(exam.Courses, "Id");
+                //sw.WriteLine("CoursesId = {0};", coursesId);
 
                 string coursesInstructorIds = ToArrayOfSets(exam.Courses, "InstructorIds");
                 sw.WriteLine("CoursesInstructorIds = {0};", coursesInstructorIds);
