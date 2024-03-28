@@ -20,6 +20,7 @@ namespace FES_data_generator
                     InstructorsNr = 10,//r.Next(5, 101),
                     DaysNr = 2,//r.Next(1, 16), //TODO: Feasibility check
                     SlotsPerDay = 10,//r.Next(10, 145),
+                    AvailabilitySlotsLenght = 2, //must be dividable with SlotsPerDay
                     RoomNr = 2,//r.Next(1, 6),
                     ProgrammNr = 2,//r.Next(1, 5),
                     DegreeNr = 1,//r.Next(1, 4),
@@ -129,7 +130,7 @@ namespace FES_data_generator
             double trueToTrue = GenerateRandomDouble(Tmean - Tvar, Tmean + Tvar);
             double falseToTrue = GenerateRandomDouble(Fmean - Fvar, Fmean + Fvar);
             var chain = new MarkovChain(trueToTrue, falseToTrue);
-            return chain.GenerateStates(r.Next(2), testExam.DaysNr * testExam.SlotsPerDay);
+            return chain.GenerateStates(r.Next(2), testExam.DaysNr * testExam.SlotsPerDay / testExam.AvailabilitySlotsLenght);
         }
 
         public static double GenerateRandomDouble(double min, double max)

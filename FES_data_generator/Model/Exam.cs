@@ -12,6 +12,7 @@ namespace FES_data_generator.Model
         public int InstructorsNr { get; set; }
         public int DaysNr { get; set;}
         public int SlotsPerDay { get; set; }
+        public int AvailabilitySlotsLenght { get; set; }
         public int RoomNr { get; set; }
         public int ProgrammNr { get; set; }
         public int DegreeNr { get; set; }
