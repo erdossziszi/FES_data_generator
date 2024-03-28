@@ -23,7 +23,7 @@ namespace FES_data_generator
                     RoomNr = 2,//r.Next(1, 6),
                     ProgrammNr = 2,//r.Next(1, 5),
                     DegreeNr = 1,//r.Next(1, 4),
-                    RolesNr = 1,//r.Next(5),  //nullable
+                    RolesNr = 2,//r.Next(5),  //nullable
                     CoursesNr = 3,//r.Next(30) //nullable
                 };
                 Dictionary<int, HashSet<int>> instructorsOfProgramms = new Dictionary<int, HashSet<int>>();
@@ -78,7 +78,7 @@ namespace FES_data_generator
                     Id = i + 1,
                     Programm = Enumerable.Range(0, r.Next(1, testExam.ProgrammNr + 1)).Select(_ => r.Next(1, testExam.ProgrammNr + 1)).Distinct().Order().ToArray(),
                     Roles = Enumerable.Range(0, r.Next(testExam.RolesNr + 1)).Select(_ => r.Next(1, testExam.RolesNr + 1)).Distinct().Order().ToArray(),
-                    Availability = GenerateSmartAvailability(r, testExam, 0.8, 0.1, 0.3, 0.1)
+                    Availability = GenerateSmartAvailability(r, testExam, 0.85, 0.1, 0.6, 0.1)
                 };
                 testExam.Instructors[i] = newInstructor;
                 foreach (var p in newInstructor.Programm)
@@ -100,7 +100,7 @@ namespace FES_data_generator
                     Programm = r.Next(1, testExam.ProgrammNr + 1),
                     Degree = r.Next(1, testExam.DegreeNr + 1),
                     //SupervisorId = r.Next(1, testExam.InstructorsNr + 1),
-                    Availability = GenerateSmartAvailability(r,testExam, 0.9, 0.1, 0.4, 0.1)
+                    Availability = GenerateSmartAvailability(r,testExam, 0.9, 0.1, 0.5, 0.1)
                 };
                 var instructorSet = instructorsOfProgramms[newStudent.Programm];
                 newStudent.SupervisorId = instructorSet.ElementAt(r.Next(instructorSet.Count));
