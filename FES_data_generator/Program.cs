@@ -12,7 +12,7 @@ namespace FES_data_generator
 
             Random r = new Random();
 
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 1; j++)
             {
                 Exam testExam = new Exam()
                 {

@@ -1,6 +1,7 @@
 ﻿using FES_data_generator.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,9 @@ namespace FES_data_generator.Utils
 
                 string instructorsRoles = ToArrayOfSets(exam.Instructors, "Roles");
                 sw.WriteLine("InstructorsRoles = {0};", instructorsRoles);
+
+                string instructorRolesPerProgramm = To2DArrayOfSets(exam.InstructorRolesPerProgramm);
+                sw.WriteLine("InstructorRolesPerProgramm = {0};", instructorRolesPerProgramm);
 
                 string instructorsAvailability = To2DArray(exam.Instructors, "Availability");
                 sw.WriteLine("InstructorsAvailability = {0};", instructorsAvailability);
@@ -85,6 +89,25 @@ namespace FES_data_generator.Utils
         {
             return "[" + string.Join(", ", group.Where(i => i != null)
                                                 .Select(i => $"|{string.Join(", ", (int[])i.GetType().GetProperty(listPropertyName).GetValue(i))}")) + "|]";
+        }
+
+        private string To2DArrayOfSets(List<int>[,] property)
+        {
+            string result = "[";
+            for (int row = 0; row < property.GetLength(0); row++)
+            {
+                result += "|";
+                for (int col = 0; col < property.GetLength(1); col++)
+                {
+                    if (col > 0) result += ", ";
+                    result += "{";
+                    result += string.Join(", ", property[row, col]);
+                    result += "}";
+                }
+            }
+            result += "|]";
+
+            return result;
         }
 
         private string ToArray(IEnumerable<object> group, string propertyName)
