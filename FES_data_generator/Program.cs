@@ -34,6 +34,7 @@ namespace FES_data_generator
                 }
 
                 GenerateInstructors(r, testExam, instructorsOfProgramms);
+                GetInstructorRolesPerProgram(testExam);
                 GenerateStudents(r, testExam, instructorsOfProgramms);
                 GenerateCourses(r, testExam);
 
@@ -81,6 +82,7 @@ namespace FES_data_generator
                     Roles = Enumerable.Range(0, r.Next(testExam.RolesNr + 1)).Select(_ => r.Next(1, testExam.RolesNr + 1)).Distinct().Order().ToArray(),
                     Availability = GenerateSmartAvailability(r, testExam, 0.85, 0.1, 0.6, 0.1)
                 };
+
                 testExam.Instructors[i] = newInstructor;
                 foreach (var p in newInstructor.Programm)
                 {
@@ -122,6 +124,33 @@ namespace FES_data_generator
                     InstructorIds = Enumerable.Range(0, r.Next(1, testExam.InstructorsNr + 1)).Select(_ => r.Next(1, testExam.InstructorsNr + 1)).Distinct().Order().ToArray(),
                 };
                 testExam.Courses[i] = newCourse;
+            }
+        }
+
+        public static void GetInstructorRolesPerProgram(Exam testExam)
+        {
+            testExam.InstructorRolesPerProgramm = new List<int>[testExam.ProgrammNr,testExam.RolesNr];
+
+            for (int i = 0; i < testExam.ProgrammNr; i++)
+            {
+                for (int j = 0; j < testExam.RolesNr; j++)
+                {
+                    testExam.InstructorRolesPerProgramm[i, j] = new List<int>();
+                }
+            }
+
+            foreach (var instructor in testExam.Instructors)
+            {
+                if (instructor.Programm != null && instructor.Roles != null)
+                {
+                    foreach (var program in instructor.Programm)
+                    {
+                        foreach (var role in instructor.Roles)
+                        {
+                            testExam.InstructorRolesPerProgramm[program - 1,role - 1].Add(instructor.Id);
+                        }                      
+                    }
+                }
             }
         }
 

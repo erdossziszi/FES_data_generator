@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FES_data_generator.Model
@@ -19,6 +20,8 @@ namespace FES_data_generator.Model
         public int RolesNr { get; set; }
         public int CoursesNr { get; set; }
         public Instructor[]? Instructors { get; set; }
+        [JsonIgnore]
+        public List<int>[,]? InstructorRolesPerProgramm { get; set; }
         public Student[]? Students { get; set; }
         public Course[]? Courses { get; set; }
     }

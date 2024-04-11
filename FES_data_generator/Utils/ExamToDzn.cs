@@ -25,6 +25,7 @@ namespace FES_data_generator.Utils
                 sw.WriteLine("InstructorsNr = {0};", exam.InstructorsNr);
                 sw.WriteLine("DaysNr = {0};", exam.DaysNr);
                 sw.WriteLine("SlotsPerDay = {0};", exam.SlotsPerDay);
+                sw.WriteLine("AvailabilitySlotsLenght = {0};", exam.AvailabilitySlotsLenght);
                 sw.WriteLine("RoomNr = {0};", exam.RoomNr);
                 sw.WriteLine("ProgrammNr = {0};", exam.ProgrammNr);
                 sw.WriteLine("DegreeNr = {0};", exam.DegreeNr);
