@@ -39,8 +39,8 @@ namespace FES_data_generator.Utils
                 string instructorsProgramm = ToArrayOfSets(exam.Instructors, "Programm");
                 sw.WriteLine("InstructorsProgramm = {0};", instructorsProgramm);
 
-                string instructorsRoles = ToArrayOfSets(exam.Instructors, "Roles");
-                sw.WriteLine("InstructorsRoles = {0};", instructorsRoles);
+                //string instructorsRoles = ToArrayOfSets(exam.Instructors, "Roles");
+                //sw.WriteLine("InstructorsRoles = {0};", instructorsRoles);
 
                 string instructorRolesPerProgramm = To2DArrayOfSets(exam.InstructorRolesPerProgramm);
                 sw.WriteLine("InstructorRolesPerProgramm = {0};", instructorRolesPerProgramm);

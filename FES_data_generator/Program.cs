@@ -35,8 +35,9 @@ namespace FES_data_generator
 
                 GenerateInstructors(r, testExam, instructorsOfProgramms);
                 GetInstructorRolesPerProgram(testExam);
-                GenerateStudents(r, testExam, instructorsOfProgramms);
                 GenerateCourses(r, testExam);
+                GenerateStudents(r, testExam, instructorsOfProgramms);
+                
 
                 AllConstraints testConstraints = new AllConstraints()
                 {
@@ -108,6 +109,22 @@ namespace FES_data_generator
                 var instructorSet = instructorsOfProgramms[newStudent.Programm];
                 newStudent.SupervisorId = instructorSet.ElementAt(r.Next(instructorSet.Count));
                 newStudent.CourseIds = Enumerable.Range(1, testExam.CoursesNr).OrderBy(_ => Guid.NewGuid()).Take(coursesPerDegree[newStudent.Degree-1]).Order().ToArray();
+
+                int minCard = 0;
+                var allCourseInstructors = new List<int>();
+                var rolesInstructors = Enumerable.Range(0, testExam.InstructorRolesPerProgramm.GetLength(1))
+                                 .Select(x => testExam.InstructorRolesPerProgramm[newStudent.Programm - 1, x]).ToArray()
+                                 .SelectMany(list => list).ToArray();
+
+                foreach (int courseId in newStudent.CourseIds)
+                {
+                    int[] courseInstructors = testExam.Courses[courseId - 1].InstructorIds;
+                    allCourseInstructors.AddRange(courseInstructors);
+                    if (!courseInstructors.Intersect(rolesInstructors).Any()) minCard++;
+                }
+                if (!allCourseInstructors.Any(x => x == newStudent.SupervisorId) && !rolesInstructors.Any(x => x == newStudent.SupervisorId)) minCard++;
+
+                newStudent.TheoryticalMinCard = minCard;
                 testExam.Students[i] = newStudent;
             }
         }
