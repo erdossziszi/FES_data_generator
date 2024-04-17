@@ -67,6 +67,8 @@ namespace FES_data_generator.Utils
                 string studentsAvailability = To2DArray(exam.Students, "Availability");
                 sw.WriteLine("StudentsAvailability = {0};", studentsAvailability);
 
+                string theoryticalMinCard = ToArray(exam.Students, "TheoryticalMinCard");
+                sw.WriteLine("TheoryticalMinCard = {0};", theoryticalMinCard);
 
                 //string coursesId = ToEnum(exam.Courses, "Id");
                 //sw.WriteLine("CoursesId = {0};", coursesId);
