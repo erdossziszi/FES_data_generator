@@ -8,7 +8,21 @@ namespace FES_data_generator.Model
 {
     internal class AllConstraints
     {
-        public Constraint? OneExamPerRoom { get; set; }
+        public Constraint? RolesDemands { get; set; }
+        public Constraint? RolesContinuity { get; set; }
+        public Constraint? ExamLen { get; set; }
+        public Constraint? LunchTsMinLen { get; set; }
+        public Constraint? LunchStarts { get; set; }
+        public Constraint? SupervisorAvailable { get; set; }
+        public Constraint? OptimalLunchLenght { get; set; }
+        public Constraint? OptimalStartTs { get; set; }
+        public Constraint? OptimalFinishTs { get; set; }
+        public Constraint? MinimizeRooms { get; set; }
+        public Constraint? RolesSoftContinuity { get; set; }
+        public Constraint? SameDegreeInRoom { get; set; }
+        public Constraint? Mergeability { get; set; }
+
+        /*public Constraint? OneExamPerRoom { get; set; }
         public Constraint? EachStudentScheduled { get; set; }
         public Constraint? OnePersonOneRoomAtOneTime { get; set; }
         public Constraint? OwnProgramForInstructors { get; set; }
@@ -31,6 +45,6 @@ namespace FES_data_generator.Model
         public ConstraintWithParameter? OptimalLunchFinish { get; set; }
         public ConstraintWithParameter? OptimalLunchLenght { get; set; }
         public Constraint[]? SimilarWorkloadsInRoles { get; set; }
-        public ConstraintWithParameter[]? ExamLenghtPerDegree { get; set; }
+        public ConstraintWithParameter[]? ExamLenghtPerDegree { get; set; }*/
     }
 }
