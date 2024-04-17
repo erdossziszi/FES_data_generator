@@ -1,5 +1,6 @@
 ﻿using FES_data_generator.Model;
 using FES_data_generator.Utils;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -37,14 +38,16 @@ namespace FES_data_generator
                 GetInstructorRolesPerProgram(testExam);
                 GenerateCourses(r, testExam);
                 GenerateStudents(r, testExam, instructorsOfProgramms);
-                
 
+                Dictionary<int, int> degreeExamLenPairs = Enumerable.Range(1, testExam.DegreeNr).ToDictionary(degree => degree, degree => new Random().Next(1, 3));
                 AllConstraints testConstraints = new AllConstraints()
                 {
-                    OneExamPerRoom = new Constraint(true),
-                    SupervisorAvailable = new Constraint(5),
-                    OptimalLunchLenght = new ConstraintWithParameter(8, false),
-                    MergeableRolesWithExaminer = [new ConstraintWithParameter(0, 2), new ConstraintWithParameter(1, 3)]
+                    RolesDemands = new Constraint(true, Enumerable.Range(0, testExam.RolesNr).Select(x => r.Next(4)).ToArray()),
+                    RolesContinuity = new Constraint(true, Enumerable.Range(1, testExam.RolesNr).OrderBy(x => r.Next()).Take(r.Next(testExam.RolesNr)).ToArray()),
+                    ExamLen = new Constraint(true, testExam.Students.Select(student => degreeExamLenPairs[student.Degree]).ToArray()),
+                    LunchTsMinLen = new Constraint(true, r.Next(3)),
+                    LunchStarts = new Constraint(true, Enumerable.Range(1, testExam.DaysNr).ToDictionary(day => day, day => new int[] { 5 + (day - 1) * 10, 6 + (day - 1) * 10 }))
+
                 };
 
                 ExamAllData testExamAllData = new ExamAllData()
