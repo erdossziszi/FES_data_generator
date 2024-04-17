@@ -18,15 +18,21 @@ namespace FES_data_generator.Model
             Required = required;
             ArrayParam = param;
         }
-        public Constraint(bool required, Dictionary<int, object> param)
+        public Constraint(bool required, Dictionary<int, int> param)
         {
             Required = required;
             DictParam = param;
         }
+        public Constraint(bool required, Dictionary<int, int[]> param)
+        {
+            Required = required;
+            ArrayDictParam = param;
+        }
         public bool? Required { get; set; }
         public int? SingleParam { get; set; }
         public int[]? ArrayParam { get; set; }
-        public Dictionary<int, object>? DictParam { get; set; }
+        public Dictionary<int, int>? DictParam { get; set; }
+        public Dictionary<int, int[]>? ArrayDictParam { get; set; }
 
     }
 }
