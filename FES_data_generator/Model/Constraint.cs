@@ -34,5 +34,25 @@ namespace FES_data_generator.Model
         public Dictionary<int, int>? DictParam { get; set; }
         public Dictionary<int, int[]>? ArrayDictParam { get; set; }
 
+        public override string ToString()
+        {
+            if (SingleParam.HasValue)
+            {
+                return SingleParam.Value.ToString();
+            }
+            if (ArrayParam is not null)
+            {
+                return $"[{string.Join(", ", ArrayParam)}]";
+            }
+            if (DictParam is not null)
+            {
+                return $"[|{string.Join(", ", DictParam.Keys)}|{string.Join(", ", DictParam.Values)}|]";
+            }
+            if (ArrayDictParam is not null)
+            {
+                return $"[{string.Join(", ", ArrayDictParam.Values.Select(p => string.Join("..",p)))}]";
+            }
+            return string.Empty;
+        }
     }
 }

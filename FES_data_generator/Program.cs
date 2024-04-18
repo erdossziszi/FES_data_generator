@@ -48,7 +48,6 @@ namespace FES_data_generator
                     LunchTsMinLen = new Constraint(true, r.Next(3)),
                     LunchStarts = new Constraint(true, Enumerable.Range(1, testExam.DaysNr).ToDictionary(day => day, day => new int[] { 5 + (day - 1) * 10, 6 + (day - 1) * 10 })),
                     SupervisorAvailable = new Constraint(false, 5),
-                    //OptimalLunchLenght = new Constraint(false, [2, 2]), //nagyobb mint LunchTsMinLen
                     OptimalStartTs = new Constraint(false, [1, 2]),
                     OptimalFinishTs = new Constraint(false, [1, testExam.SlotsPerDay - 1]),
                     MinimizeRooms = new Constraint(false, r.Next(3,6)*100),
@@ -77,7 +76,7 @@ namespace FES_data_generator
                 Console.WriteLine(json);
                 File.WriteAllText(fileNameJson, json);
 
-                var examToDzn = new ExamToDzn(testExam);
+                var examToDzn = new ExamToDzn(testExam,testConstraints);
                 examToDzn.SerializeToDzn(fileNameDzn);
             }
         }
