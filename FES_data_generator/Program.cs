@@ -20,13 +20,13 @@ namespace FES_data_generator
                     StudentsNr = 15,//r.Next(5, 301),
                     InstructorsNr = 10,//r.Next(5, 101),
                     DaysNr = 2,//r.Next(1, 16), //TODO: Feasibility check
-                    SlotsPerDay = 10,//r.Next(10, 145),
-                    AvailabilitySlotsLenght = 2, //must be dividable with SlotsPerDay
+                    SlotsPerDay = 15,//r.Next(10, 145),
+                    AvailabilitySlotsLenght = 3, //must be dividable with SlotsPerDay
                     RoomNr = 2,//r.Next(1, 6),
-                    ProgrammNr = 2,//r.Next(1, 5),
-                    DegreeNr = 1,//r.Next(1, 4),
+                    ProgrammNr = 1,//r.Next(1, 5),
+                    DegreeNr = 2,//r.Next(1, 4),
                     RolesNr = 2,//r.Next(5),  //nullable
-                    CoursesNr = 3,//r.Next(30) //nullable
+                    CoursesNr = 4,//r.Next(30) //nullable
                 };
                 Dictionary<int, HashSet<int>> instructorsOfProgramms = new Dictionary<int, HashSet<int>>();
                 for (int i = 1; i < testExam.ProgrammNr + 1; i++)
@@ -39,18 +39,32 @@ namespace FES_data_generator
                 GenerateCourses(r, testExam);
                 GenerateStudents(r, testExam, instructorsOfProgramms);
 
+                int[] minInstructorsPerRoles = new int[testExam.RolesNr];
+                for (int k = 0; k < testExam.RolesNr; k++)
+                {
+                    minInstructorsPerRoles[k] = testExam.InstructorsNr;
+
+                    for (int i = 0; i < testExam.ProgrammNr; i++)
+                    {
+                        if (testExam.InstructorRolesPerProgramm[i, k] != null)
+                        {
+                            minInstructorsPerRoles[k] = Math.Min(minInstructorsPerRoles[k], testExam.InstructorRolesPerProgramm[i, k].Count);
+                        }
+                    }
+                }
                 Dictionary<int, int> degreeExamLenPairs = Enumerable.Range(1, testExam.DegreeNr).ToDictionary(degree => degree, degree => new Random().Next(1, 3));
                 AllConstraints testConstraints = new AllConstraints()
                 {
-                    RolesDemands = new Constraint(true, Enumerable.Range(0, testExam.RolesNr).Select(x => r.Next(4)).ToArray()),
+                    RolesDemands = new Constraint(true, Enumerable.Range(0, testExam.RolesNr).Select(x => r.Next(minInstructorsPerRoles[x] + 1)).ToArray()),
                     RolesContinuity = new Constraint(true, Enumerable.Range(1, testExam.RolesNr).OrderBy(x => r.Next()).Take(r.Next(testExam.RolesNr)).ToArray()),
                     ExamLen = new Constraint(true, testExam.Students.Select(student => degreeExamLenPairs[student.Degree]).ToArray()),
                     LunchTsMinLen = new Constraint(true, r.Next(3)),
-                    LunchStarts = new Constraint(true, Enumerable.Range(1, testExam.DaysNr).ToDictionary(day => day, day => new int[] { 5 + (day - 1) * 10, 6 + (day - 1) * 10 })),
+                    LunchStarts = new Constraint(true, Enumerable.Range(1, testExam.DaysNr)
+                                      .ToDictionary(day => day, day => new int[] { testExam.SlotsPerDay/2 + (day - 1) * testExam.SlotsPerDay, testExam.SlotsPerDay / 2+1 + (day - 1) * testExam.SlotsPerDay })),
                     SupervisorAvailable = new Constraint(false, 5),
                     OptimalStartTs = new Constraint(false, [1, 2]),
                     OptimalFinishTs = new Constraint(false, [1, testExam.SlotsPerDay - 1]),
-                    MinimizeRooms = new Constraint(false, r.Next(3,6)*100),
+                    MinimizeRooms = new Constraint(false, r.Next(3, 6) * 100),
                     RolesSoftContinuity = new Constraint(false, Enumerable.Range(1, testExam.RolesNr).ToDictionary(role => role, role => r.Next(3))),
                     SameDegreeInRoom = new Constraint(false, r.Next(3) * 10),
                     Mergeability = new Constraint(false, r.Next(3))
