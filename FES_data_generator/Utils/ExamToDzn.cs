@@ -38,7 +38,7 @@ namespace FES_data_generator.Utils
                 string instructorsProgramm = ToArrayOfSets(exam.Instructors, "Programm");
                 sw.WriteLine("InstructorsProgramm = {0};", instructorsProgramm);
 
-                string instructorRolesPerProgramm = To2DArrayOfSets(exam.InstructorRolesPerProgramm);
+                string instructorRolesPerProgramm = exam.RolesNr > 0 ? To2DArrayOfSets(exam.InstructorRolesPerProgramm) : "array2d(1..ProgrammNr,{},[])";
                 sw.WriteLine("InstructorRolesPerProgramm = {0};", instructorRolesPerProgramm);
 
                 string instructorsAvailability = To2DArray(exam.Instructors, "Availability");
@@ -75,7 +75,8 @@ namespace FES_data_generator.Utils
                 if (allConstraints.OptimalStartTs is not null) sw.WriteLine($"OptimalStartTs = {allConstraints.OptimalStartTs};");
                 if (allConstraints.OptimalFinishTs is not null) sw.WriteLine($"OptimalFinishTs = {allConstraints.OptimalFinishTs};");
                 if (allConstraints.MinimizeRooms is not null) sw.WriteLine($"MinimizeRooms = {allConstraints.MinimizeRooms};");
-                if (allConstraints.RolesSoftContinuity is not null) sw.WriteLine($"RolesSoftContinuity = {allConstraints.RolesSoftContinuity};");
+                string rolesSoftCont = exam.RolesNr > 0 ? allConstraints.RolesSoftContinuity?.ToString() ?? string.Empty : "array2d(1..2,{},[])";
+                if (allConstraints.RolesSoftContinuity is not null) sw.WriteLine($"RolesSoftContinuity = {rolesSoftCont};");
                 if (allConstraints.SameDegreeInRoom is not null) sw.WriteLine($"SameDegreeInRoom = {allConstraints.SameDegreeInRoom};");
                 if (allConstraints.Mergeability is not null) sw.WriteLine($"Mergeability = {allConstraints.Mergeability};");
 

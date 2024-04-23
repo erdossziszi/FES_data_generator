@@ -25,7 +25,7 @@ namespace FES_data_generator
                     RoomNr = 2,//r.Next(1, 6),
                     ProgrammNr = 1,//r.Next(1, 5),
                     DegreeNr = 2,//r.Next(1, 4),
-                    RolesNr = 2,//r.Next(5),  //nullable
+                    RolesNr = 0,//r.Next(5),  //nullable
                     CoursesNr = 4,//r.Next(30) //nullable
                 };
                 Dictionary<int, HashSet<int>> instructorsOfProgramms = new Dictionary<int, HashSet<int>>();
