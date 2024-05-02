@@ -1,0 +1,381 @@
+{
+  "Exam": {
+    "StudentsNr": 10,
+    "InstructorsNr": 6,
+    "DaysNr": 2,
+    "SlotsPerDay": 40,
+    "AvailabilitySlotsLenght": 40,
+    "RoomNr": 1,
+    "ProgrammNr": 1,
+    "DegreeNr": 3,
+    "RolesNr": 1,
+    "CoursesNr": 6,
+    "Instructors": [
+      {
+        "Id": 1,
+        "Programm": [
+          1
+        ],
+        "Roles": [
+          1
+        ],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 2,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 3,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          0
+        ]
+      },
+      {
+        "Id": 4,
+        "Programm": [
+          1
+        ],
+        "Roles": [
+          1
+        ],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 5,
+        "Programm": [
+          1
+        ],
+        "Roles": [
+          1
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 6,
+        "Programm": [
+          1
+        ],
+        "Roles": [
+          1
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      }
+    ],
+    "Students": [
+      {
+        "Id": 1,
+        "Programm": 1,
+        "Degree": 3,
+        "SupervisorId": 3,
+        "CourseIds": [
+          4,
+          5,
+          6
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 2,
+        "Programm": 1,
+        "Degree": 2,
+        "SupervisorId": 3,
+        "CourseIds": [
+          3,
+          5
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 3,
+        "Programm": 1,
+        "Degree": 3,
+        "SupervisorId": 4,
+        "CourseIds": [
+          1,
+          2,
+          6
+        ],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 4,
+        "Programm": 1,
+        "Degree": 2,
+        "SupervisorId": 1,
+        "CourseIds": [
+          1,
+          2
+        ],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 5,
+        "Programm": 1,
+        "Degree": 2,
+        "SupervisorId": 5,
+        "CourseIds": [
+          1,
+          6
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 6,
+        "Programm": 1,
+        "Degree": 3,
+        "SupervisorId": 5,
+        "CourseIds": [
+          1,
+          2,
+          5
+        ],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 7,
+        "Programm": 1,
+        "Degree": 1,
+        "SupervisorId": 1,
+        "CourseIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 8,
+        "Programm": 1,
+        "Degree": 1,
+        "SupervisorId": 4,
+        "CourseIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 9,
+        "Programm": 1,
+        "Degree": 1,
+        "SupervisorId": 2,
+        "CourseIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 10,
+        "Programm": 1,
+        "Degree": 3,
+        "SupervisorId": 3,
+        "CourseIds": [
+          1,
+          4,
+          6
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      }
+    ],
+    "Courses": [
+      {
+        "Id": 1,
+        "InstructorIds": [
+          6
+        ]
+      },
+      {
+        "Id": 2,
+        "InstructorIds": [
+          3,
+          4
+        ]
+      },
+      {
+        "Id": 3,
+        "InstructorIds": [
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "Id": 4,
+        "InstructorIds": [
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "Id": 5,
+        "InstructorIds": [
+          4
+        ]
+      },
+      {
+        "Id": 6,
+        "InstructorIds": [
+          1,
+          2,
+          5
+        ]
+      }
+    ]
+  },
+  "AllConstraints": {
+    "RolesDemands": {
+      "Required": true,
+      "ArrayParam": [
+        4
+      ]
+    },
+    "RolesContinuity": {
+      "Required": true,
+      "ArrayParam": []
+    },
+    "ExamLen": {
+      "Required": true,
+      "ArrayParam": [
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2,
+        1
+      ]
+    },
+    "LunchTsMinLen": {
+      "Required": true,
+      "SingleParam": 0
+    },
+    "LunchStarts": {
+      "Required": true,
+      "ArrayDictParam": {
+        "1": [
+          11,
+          21
+        ],
+        "2": [
+          56,
+          63
+        ]
+      }
+    },
+    "SupervisorAvailable": {
+      "Required": false,
+      "SingleParam": 0
+    },
+    "OptimalLunchLenght": {
+      "Required": false,
+      "ArrayParam": [
+        3,
+        0
+      ]
+    },
+    "OptimalStartTs": {
+      "Required": false,
+      "ArrayParam": [
+        2,
+        0
+      ]
+    },
+    "OptimalFinishTs": {
+      "Required": false,
+      "ArrayParam": [
+        1,
+        40
+      ]
+    },
+    "MinimizeRooms": {
+      "Required": false,
+      "SingleParam": 400
+    },
+    "RolesSoftContinuity": {
+      "Required": false,
+      "DictParam": {
+        "1": 1
+      }
+    },
+    "SameDegreeInRoom": {
+      "Required": false,
+      "SingleParam": 10
+    },
+    "Mergeability": {
+      "Required": false,
+      "SingleParam": 1
+    }
+  }
+}

@@ -1,0 +1,600 @@
+{
+  "Exam": {
+    "StudentsNr": 10,
+    "InstructorsNr": 27,
+    "DaysNr": 2,
+    "SlotsPerDay": 20,
+    "AvailabilitySlotsLenght": 20,
+    "RoomNr": 1,
+    "ProgrammNr": 2,
+    "DegreeNr": 1,
+    "RolesNr": 0,
+    "CoursesNr": 3,
+    "Instructors": [
+      {
+        "Id": 1,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 2,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 3,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 4,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 5,
+        "Programm": [
+          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 6,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 7,
+        "Programm": [
+          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 8,
+        "Programm": [
+          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 9,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 10,
+        "Programm": [
+          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 11,
+        "Programm": [
+          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 12,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 13,
+        "Programm": [
+          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 14,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 15,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 16,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 17,
+        "Programm": [
+          1,
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 18,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 19,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 20,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 21,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 22,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 23,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 24,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 25,
+        "Programm": [
+          2
+        ],
+        "Roles": [],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 26,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 27,
+        "Programm": [
+          1
+        ],
+        "Roles": [],
+        "Availability": [
+          0,
+          1
+        ]
+      }
+    ],
+    "Students": [
+      {
+        "Id": 1,
+        "Programm": 2,
+        "Degree": 1,
+        "SupervisorId": 10,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 2,
+        "Programm": 1,
+        "Degree": 1,
+        "SupervisorId": 16,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 3,
+        "Programm": 2,
+        "Degree": 1,
+        "SupervisorId": 15,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 4,
+        "Programm": 2,
+        "Degree": 1,
+        "SupervisorId": 11,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          1,
+          0
+        ]
+      },
+      {
+        "Id": 5,
+        "Programm": 2,
+        "Degree": 1,
+        "SupervisorId": 6,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 6,
+        "Programm": 2,
+        "Degree": 1,
+        "SupervisorId": 8,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 7,
+        "Programm": 2,
+        "Degree": 1,
+        "SupervisorId": 5,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          0,
+          0
+        ]
+      },
+      {
+        "Id": 8,
+        "Programm": 1,
+        "Degree": 1,
+        "SupervisorId": 13,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          0,
+          1
+        ]
+      },
+      {
+        "Id": 9,
+        "Programm": 2,
+        "Degree": 1,
+        "SupervisorId": 24,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          1,
+          1
+        ]
+      },
+      {
+        "Id": 10,
+        "Programm": 1,
+        "Degree": 1,
+        "SupervisorId": 26,
+        "CourseIds": [
+          1,
+          2,
+          3
+        ],
+        "Availability": [
+          0,
+          0
+        ]
+      }
+    ],
+    "Courses": [
+      {
+        "Id": 1,
+        "InstructorIds": [
+          5,
+          6,
+          9,
+          13,
+          15,
+          17,
+          19,
+          20,
+          21,
+          25
+        ]
+      },
+      {
+        "Id": 2,
+        "InstructorIds": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          9,
+          10,
+          11,
+          12,
+          13,
+          18,
+          19,
+          20,
+          22,
+          25
+        ]
+      },
+      {
+        "Id": 3,
+        "InstructorIds": [
+          17,
+          21,
+          24
+        ]
+      }
+    ]
+  },
+  "AllConstraints": {
+    "RolesDemands": {
+      "Required": true,
+      "ArrayParam": []
+    },
+    "RolesContinuity": {
+      "Required": true,
+      "ArrayParam": []
+    },
+    "ExamLen": {
+      "Required": true,
+      "ArrayParam": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "LunchTsMinLen": {
+      "Required": true,
+      "SingleParam": 1
+    },
+    "LunchStarts": {
+      "Required": true,
+      "ArrayDictParam": {
+        "1": [
+          10,
+          11
+        ],
+        "2": [
+          28,
+          33
+        ]
+      }
+    },
+    "SupervisorAvailable": {
+      "Required": false,
+      "SingleParam": 0
+    },
+    "OptimalLunchLenght": {
+      "Required": false,
+      "ArrayParam": [
+        3,
+        1
+      ]
+    },
+    "OptimalStartTs": {
+      "Required": false,
+      "ArrayParam": [
+        1,
+        0
+      ]
+    },
+    "OptimalFinishTs": {
+      "Required": false,
+      "ArrayParam": [
+        1,
+        20
+      ]
+    },
+    "MinimizeRooms": {
+      "Required": false,
+      "SingleParam": 200
+    },
+    "RolesSoftContinuity": {
+      "Required": false,
+      "DictParam": {}
+    },
+    "SameDegreeInRoom": {
+      "Required": false,
+      "SingleParam": 10
+    },
+    "Mergeability": {
+      "Required": false,
+      "SingleParam": 2
+    }
+  }
+}
