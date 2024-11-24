@@ -1,64 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FES_data_generator.Utils;
 
-namespace FES_data_generator.Utils
+public class MarkovChain
 {
-    //public enum State { True, False }
-    internal class MarkovChain
-    {
-        private readonly double[,] _transitionProbabilities;
-        private Random r = new Random();
+    private readonly double[,] _transitionProbabilities;
+    private readonly Random _r = new();
 
-        public MarkovChain(double trueToTrueProbability, double falseToTrueProbability)
+    public MarkovChain(double trueToTrueProbability, double falseToTrueProbability)
+    {
+        _transitionProbabilities = new double[2, 2]
         {
-            _transitionProbabilities = new double[2, 2]
-            {
             { trueToTrueProbability, 1 - trueToTrueProbability },
             { falseToTrueProbability, 1 - falseToTrueProbability }
-            };
-        }
+        };
+    }
 
-        public int NextState(int currentState)
+    public int NextState(int currentState)
+    {
+        double randomNumber = _r.NextDouble();
+
+        if (currentState == 1)
         {
-            double randomNumber = r.NextDouble();
-
-            if (currentState == 1)
-            {
-                if (randomNumber < _transitionProbabilities[0, 0])
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                if (randomNumber < _transitionProbabilities[1, 0])
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
+            return randomNumber < _transitionProbabilities[0, 0] ? 1 : 0;
         }
-
-        public int[] GenerateStates(int init, int length)
+        else
         {
-            var states = new int[length];
-            states[0] = init;
-            for (int i = 1; i < length; i++)
-            {
-                states[i] = NextState(states[i - 1]);
-            }
-            return states;
+            return randomNumber < _transitionProbabilities[1, 0] ? 1 : 0;
         }
+    }
 
+    public int[] GenerateStates(int initialState, int length)
+    {
+        var states = new int[length];
+        states[0] = initialState;
+        for (int i = 1; i < length; i++)
+        {
+            states[i] = NextState(states[i - 1]);
+        }
+        return states;
     }
 }

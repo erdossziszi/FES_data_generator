@@ -1,58 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FES_data_generator.Model;
 
-namespace FES_data_generator.Model
+public record Constraint
 {
-    internal class Constraint
+    public Constraint(bool required, int singleParam)
     {
-        public Constraint(bool required, int param)
-        {
-            Required = required;
-            SingleParam = param;
-        }
-        public Constraint(bool required, int[] param)
-        {
-            Required = required;
-            ArrayParam = param;
-        }
-        public Constraint(bool required, Dictionary<int, int> param)
-        {
-            Required = required;
-            DictParam = param;
-        }
-        public Constraint(bool required, Dictionary<int, int[]> param)
-        {
-            Required = required;
-            ArrayDictParam = param;
-        }
-        public bool? Required { get; set; }
-        public int? SingleParam { get; set; }
-        public int[]? ArrayParam { get; set; }
-        public Dictionary<int, int>? DictParam { get; set; }
-        public Dictionary<int, int[]>? ArrayDictParam { get; set; }
+        Required = required;
+        SingleParam = singleParam;
+    }
+    public Constraint(bool required, int[] arrayParam)
+    {
+        Required = required;
+        ArrayParam = arrayParam;
+    }
+    public Constraint(bool required, Dictionary<int, int> dictParam)
+    {
+        Required = required;
+        DictParam = dictParam;
+    }
+    public Constraint(bool required, Dictionary<int, int[]> arrayDictParam)
+    {
+        Required = required;
+        ArrayDictParam = arrayDictParam;
+    }
+    public bool Required { get; init; }
+    public int? SingleParam { get; init; }
+    public int[]? ArrayParam { get; init; }
+    public Dictionary<int, int>? DictParam { get; init; }
+    public Dictionary<int, int[]>? ArrayDictParam { get; init; }
 
-        public override string ToString()
+    public override string ToString()
+    {
+        if (SingleParam.HasValue)
         {
-            if (SingleParam.HasValue)
-            {
-                return SingleParam.Value.ToString();
-            }
-            if (ArrayParam is not null)
-            {
-                return $"[{string.Join(", ", ArrayParam)}]";
-            }
-            if (DictParam is not null)
-            {
-                return $"[|{string.Join(", ", DictParam.Keys)}|{string.Join(", ", DictParam.Values)}|]";
-            }
-            if (ArrayDictParam is not null)
-            {
-                return $"[{string.Join(", ", ArrayDictParam.Values.Select(p => string.Join("..",p)))}]";
-            }
-            return string.Empty;
+            return SingleParam.Value.ToString();
         }
+        if (ArrayParam is not null)
+        {
+            return $"[{string.Join(", ", ArrayParam)}]";
+        }
+        if (DictParam is not null)
+        {
+            return $"[|{string.Join(", ", DictParam.Keys)}|{string.Join(", ", DictParam.Values)}|]";
+        }
+        if (ArrayDictParam is not null)
+        {
+            return $"[{string.Join(", ", ArrayDictParam.Values.Select(p => string.Join("..",p)))}]";
+        }
+        return string.Empty;
     }
 }

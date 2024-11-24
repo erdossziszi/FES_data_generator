@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FES_data_generator.Model;
 
-namespace FES_data_generator.Model
+public enum Roles
 {
-    internal enum Roles
-    {
-        Unknown = 0,
-        Chair = 1,
-        Member = 2,
-        Secretary = 4
-    }
+    Unknown = 0,
+    Chair = 1,
+    Member = 2,
+    Secretary = 4
 }
