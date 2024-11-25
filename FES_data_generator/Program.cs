@@ -75,7 +75,7 @@ internal class Program
         {
             var testExam = new Exam()
             {
-                NumberOfStudents = 100,
+                NumberOfStudents = 50,
                 NumberOfInstructors = random.Next(3, 101),
                 NumberOfDays = random.Next(6, 11),
                 SlotsPerDay = timeSlot.OptimalSlotsPerDay,
